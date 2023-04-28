@@ -1,10 +1,15 @@
 const express = require('express');
+const { db } = require('../models/movie.schema');
 const movie = require('../models/movie.schema');
 
 let app = express();
 
-let get = (req,res) => {
-    res.status(200).send(movie.find());
+let get = async (req,res) => {
+    try {
+        res.status(200).send(await movie.find());
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 let post = async (req,res) => {
